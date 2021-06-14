@@ -1,7 +1,6 @@
 const express = require('express')
 const ngrok = require('ngrok')
 const axios = require('axios')
-const crypto = require('crypto')
 const { IncomingWebhook } = require('@slack/webhook');
 
 const bodyParser = require("body-parser")
@@ -14,7 +13,7 @@ const webhook = new IncomingWebhook(url);
 // Initialize express and define a port
 const app = express()
 const PORT = process.env.PORT || 5000
-const passcode = crypto.randomBytes(48).toString('hex')
+const passcode = process.env.PASSCODE
 app.use(bodyParser.json())
 
 app.post('/', (request, response) => {
