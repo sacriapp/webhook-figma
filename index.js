@@ -78,6 +78,7 @@ const notifySlack = ({
           "text": `
             ${triggerdName} がコメントをしました【<${url}|${file_name}】
           `
+        }
       },
       {
         "type": "section",
@@ -86,6 +87,7 @@ const notifySlack = ({
           "text": `
             ${commentText}
           `
+        }
       }      
     ]
     );
