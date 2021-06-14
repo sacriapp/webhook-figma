@@ -3,7 +3,7 @@ const ngrok = require('ngrok')
 const axios = require('axios')
 const crypto = require('crypto')
 const bodyParser = require("body-parser")
-const endpoint = "https://heroku-test-figma.herokuapp.com/figma"
+const endpoint = "https://heroku-test-figma.herokuapp.com"
 
 // Initialize express and define a port
 const app = express()
@@ -12,10 +12,11 @@ const passcode = crypto.randomBytes(48).toString('hex')
 app.use(bodyParser.json())
 
 app.post('/', (request, response) => {
-  if (request.body.passcode === passcode) {
-    const { timestamp } = request.body
+  const { body } = request
+  console.log(body)
+  if (body.passcode === passcode) {
+    const { timestamp } = body
     console.log(`comment was updated at ${timestamp}`)
-    console.log(request)
     response.sendStatus(200)
   } else {
     response.sendStatus(403)
