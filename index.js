@@ -63,13 +63,20 @@ const notifySlack = ({
     return n.text
   })
   (async () => {
-    await webhook.send(
+    await webhook.send([
+      {
+        "type": "header",
+        "text": {
+          "type": "plain_text",
+          "text": "New Comment Figma"
+        }
+      },
       {
         "type": "section",
         "text": {
           "type": "mrkdwn",
           "text": `
-            ${triggerdName} がコメントをしました【<${}|${file_name}】
+            ${triggerdName} がコメントをしました【<${url}|${file_name}】
           `
       },
       {
@@ -79,7 +86,8 @@ const notifySlack = ({
           "text": `
             ${commentText}
           `
-      }
+      }      
+    ]
     );
   })();  
 }
