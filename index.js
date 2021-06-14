@@ -13,18 +13,13 @@ app.use(bodyParser.json())
 
 app.post('/', (request, response) => {
   if (request.body.passcode === passcode) {
-    const { file_name, timestamp } = request.body
-    console.log(`${file_name} was updated at ${timestamp}`)
+    const { timestamp } = request.body
+    console.log(`comment was updated at ${timestamp}`)
+    console.log(request)
     response.sendStatus(200)
   } else {
     response.sendStatus(403)
   }
-})
-
-app.post('/figma', (req, res) => {
-  const body = req.body;
-  console.log(body) // Call your action on the request here
-  res.status(200).end()
 })
 
 // Start express on the defined port
