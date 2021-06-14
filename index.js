@@ -7,7 +7,7 @@ const bodyParser = require("body-parser")
 const endpoint = "https://heroku-test-figma.herokuapp.com"
 
 const slackURL = process.env.SLACK_WEBHOOK_URL;
-const webhook = new IncomingWebhook(url);
+const webhook = new IncomingWebhook(slackURL);
 
 
 // Initialize express and define a port
@@ -88,7 +88,7 @@ const notifySlack = ({
             ${commentText}
           `
         }
-      }      
+      }
     ]
     );
   })();  
