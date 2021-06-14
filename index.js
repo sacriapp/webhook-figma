@@ -19,8 +19,8 @@ app.use(bodyParser.json())
 app.post('/', (request, response) => {
   const { body } = request
   if (body.passcode === passcode) {
-    const { comment, file_key, file_name, mentions, triggerd_by, timestamp } = body
-    notifySlack({comment, file_key, file_name, mentions, triggerd_by})
+    const { comment, file_key, file_name, mentions, triggered_by, timestamp } = body
+    notifySlack({comment, file_key, file_name, mentions, triggered_by})
     console.log(`comment was updated at ${timestamp}`)
     response.sendStatus(200)
   } else {
@@ -55,9 +55,9 @@ const notifySlack = ({
   file_key,
   file_name,
   mentions,
-  triggerd_by
+  triggered_by
 }) => {
-  const triggerdName = triggerd_by.handle
+  const triggerdName = triggered_by.handle
   const url = parseFigmaUrl(file_key)
   const commentText = comment.map((n) => {
     return n.text
@@ -91,7 +91,7 @@ const notifySlack = ({
       }
     ]
     );
-  })();  
+  })();
 }
 
 const parseFigmaUrl = (file_key) => {
