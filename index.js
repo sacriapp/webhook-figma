@@ -8,9 +8,10 @@ const PORT = process.env.PORT || 5000
 // Tell express to use body-parser's JSON parsing
 app.use(bodyParser.json())
 
-app.get('/figma', (req, res) => {
-  console.log(req.body) // Call your action on the request here
-  res.status(200).end() // Responding is important
+app.post('/figma', (req, res) => {
+  const body = req.body;
+  console.log(req, body) // Call your action on the request here
+  res.status(200).end()
 })
 
 // Server index page
