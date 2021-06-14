@@ -57,7 +57,7 @@ const notifySlack = ({
   mentions,
   triggered_by
 }) => {
-  const triggerdName = triggered_by.handle
+  const triggerdName = "handle" in triggered_by ? triggered_by["handle"] : "NULL"
   const url = parseFigmaUrl(file_key)
   const commentText = comment.map((n) => {
     return n.text
